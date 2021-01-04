@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LandingComponent } from './landing/landing.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
+import { ItemNotImplementedComponent } from './item-not-implemented/item-not-implemented.component';
 
 
 
@@ -22,6 +23,7 @@ import { ArticleComponent } from './article/article.component';
     LandingComponent,
     ArticlesComponent,
     ArticleComponent,
+    ItemNotImplementedComponent,
 
   ],
   imports: [
