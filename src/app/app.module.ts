@@ -10,12 +10,18 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { LandingComponent } from './landing/landing.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleComponent } from './article/article.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LandingComponent,
+    ArticlesComponent,
+    ArticleComponent,
 
   ],
   imports: [
