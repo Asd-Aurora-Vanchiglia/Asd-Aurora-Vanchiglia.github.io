@@ -1,19 +1,20 @@
 <div class="features">
     <div class="row">
-        <div class="column">
+        <div class="column" [routerLink]="['/11-boyz']">
             <mat-icon aria-hidden="false" aria-label="La squadra di calcio maschile">sports_soccer</mat-icon>
-            <h3>Squadra Maschile</h3>
-            <p>La squadra di calcio maschile</p>
+            <h3>Calcio a 11 Maschile</h3>
         </div>
-        <div class="column">
+        <div class="column" [routerLink]="['/5-girlz']">
             <mat-icon aria-hidden="false" aria-label="La squadra di calcio femminile">sports_soccer</mat-icon>
-            <h3>Squadra Femminile</h3>
-            <p>La squadra di calcio femminile</p>
+            <h3>Calcio a 5 Femminile</h3>
         </div>
-        <div class="column">
+        <div class="column" [routerLink]="['/altri']">
+            <mat-icon aria-hidden="false" aria-label="La squadra di calcio femminile">sports_volleyball</mat-icon>
+            <h3>Altre squadre</h3>
+        </div>
+        <div class="column" [routerLink]="['/supporters']">
             <mat-icon aria-hidden="false" aria-label="Support your local footbal team">groups</mat-icon>
             <h3>Supporters</h3>
-            <p>Support your local footbal team</p>
         </div>
     </div>
 </div>
