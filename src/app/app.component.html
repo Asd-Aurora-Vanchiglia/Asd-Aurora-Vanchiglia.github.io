@@ -1,19 +1,19 @@
 <mat-drawer-container>
-  <mat-drawer #drawer [mode]="isShowHideFlag">
+  <mat-drawer #drawer [mode]="isShowHideFlag" class="col-md-3 col-sm-12">
     <mat-icon aria-hidden="false" class="close" (click)="drawer.toggle()">close</mat-icon>
     <br>
     <h1>Menù</h1>
     <mat-list role="list">
-      <mat-list-item role="listitem"><a [routerLink]="['/home']" routerLinkActive="active-link" mat-button>Home</a></mat-list-item>
-      <mat-list-item role="listitem"><a [routerLink]="['/chisiamo']" routerLinkActive="active-link" mat-button>Chi Siamo</a></mat-list-item>
-      <mat-list-item role="listitem"><a [routerLink]="['/comunicati']" routerLinkActive="active-link" mat-button>Comunicati</a></mat-list-item>
-      <mat-list-item role="listitem"><a [routerLink]="['/iniziative']" routerLinkActive="active-link" mat-button>Iniziative </a></mat-list-item>
-      <mat-list-item role="listitem"><a [routerLink]="['/calendario-partite']" routerLinkActive="active-link" mat-button>Calendario partite</a></mat-list-item>
-      <mat-list-item role="listitem"><a [routerLink]="['/podcast']" routerLinkActive="active-link" mat-button>Podcast</a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/home']"  routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Home</a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/chisiamo']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Chi Siamo</a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/comunicati']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Comunicati</a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/iniziative']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Iniziative </a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/calendario-partite']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Calendario partite</a></mat-list-item>
+      <mat-list-item role="listitem"><a [routerLink]="['/podcast']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Podcast</a></mat-list-item>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar class="nav">
+    <!-- <mat-toolbar class="nav">
       <mat-list role="list">
         <mat-list-item role="listitem"><a [routerLink]="['/home']" routerLinkActive="active-link" mat-button>Home</a></mat-list-item>
         <mat-list-item role="listitem"><a [routerLink]="['/chisiamo']" routerLinkActive="active-link" mat-button>Chi Siamo</a></mat-list-item>
@@ -22,13 +22,13 @@
         <mat-list-item role="listitem"><a [routerLink]="['/calendario-partite']" routerLinkActive="active-link" mat-button>Calendario partite</a></mat-list-item>
         <mat-list-item role="listitem"><a [routerLink]="['/podcast']" routerLinkActive="active-link" mat-button>Podcast</a></mat-list-item>
       </mat-list>
-    </mat-toolbar>
+    </mat-toolbar> -->
     <div class="silder" [ngStyle]="{'background-image': 'url(' + cover + ')'}">
-      <mat-icon aria-hidden="false" class="desktop-hide" (click)="drawer.toggle()">
+      <mat-icon aria-hidden="false"  (click)="drawer.toggle()">
         reorder
       </mat-icon>
       <div class="silder-content">
-        <h1>{{title}}</h1>
+        <h1 style="margin-top: 16%;">{{title}}</h1>
       </div>
     </div>
     <router-outlet></router-outlet>
