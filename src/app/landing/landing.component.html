@@ -20,38 +20,26 @@
 </div>
 <div class="contents">
     <h2>In Evidenza</h2>
-    <div class="row">
+    <span *ngFor="let article of articles; index as i">
+        <app-article-preview [article]="article" [coverOnLeft]="i % 2 != 0" ></app-article-preview>
+    </span>
+    <!-- <div class="row">
         <div class="column center-content">
             <h3>IL CALCIO È UNO SPORT PER RAGAZZE!</h3>
-            <p>Un altro anno di #SportPopolare si appresta a iniziare e noi con grinta e determinazione siamo pronte a
-                ricominciare ad allenarci!
-                Nonostante la situazione pandemica incomba, la squadra cresce in qualità e in quantità a pieno ritmo,
-                rendendo la nostra avventura sempre più stimolante.
-                La nostra è un'esperienza fatta di impegno e passione, di crescita individuale e collettiva. Ognuna di
-                noi porta dentro questo meraviglioso contenitore un pezzo di se': la sua forza, le sue rivendicazioni,
-                le sue paure, la sua lotta. Continueremo anche quest'anno a farci sentire, a occupare con fierezza gli
-                spazi che attraversiamo, a ripetere che il calcio è uno sport per ragazze, ad allenare il nostro corpo e
-                la nostra mente. Solidali, ribelli, libere (… e pure belle, diciamocelo! 🤩 )
-                Non vediamo l'ora di rivederci e poter finalmente giocare, di correre, di sudare, di ridere, di
-                incazzarci, ma anche riabbracciarci e urlare insieme.
-
-                Buon 2021 a tutte noi, e a tutt* coloro che ci sostengono. Che la nostra avventura continui con il vento
-                sempre in poppa!
-
-                Asd Aurora-Vanchiglia GIRLZ</p>
+            <p></p>
         </div>
         <div class="column">
             <img src="assets/girlz.jpg">
         </div>
-    </div>
-    <div class="row">
-        <div class="column">
+    </div> -->
+    <!-- <div class="row">
+        <div class="column col">
             <img src="assets/tifo.jpg">
         </div>
-        <div class="column center-content">
+        <div class="column col center-content">
             <h3> Tempo di bilanci e prospettive anche in casa AuroraVanchiglia per questo fine 2020.
             </h3>
-            <p> Per una realtà popolare come la nostra, con poco più di un anno di attività sulle spalle sicuramente il
+            <p > Per una realtà popolare come la nostra, con poco più di un anno di attività sulle spalle sicuramente il
                 Covid ha "bloccato" un po' di progetti, forse anche sul più bello quando vedevamo avverarsi sia sul
                 piano sportivo che aggregativo i nostri primi traguardi.
                 La trasferta di San Damiano d' Asti con un pulman da 70 persone pieno di supporters, l'esordio delle
@@ -71,8 +59,8 @@
                 BUON 2021! ALLA CARICA!
             </p>
         </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
         <div class="column center-content">
             <h3>SE TOCCANO UNA, TOCCANO TUTTE!</h3>
             <p>
@@ -91,8 +79,8 @@
         <div class="column">
             <img src="assets/eddi.jpg">
         </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
         <div class="column">
             <img src="assets/match.png">
         </div>
@@ -106,7 +94,7 @@
                 difensivo Piero Maiorano!".
             </p>
         </div>
-    </div>
+    </div> -->
 </div>
 <!-- <div class="contactus">
     <h2>Subscribe now To get Updates</h2>

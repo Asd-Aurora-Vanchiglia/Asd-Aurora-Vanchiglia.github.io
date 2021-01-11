@@ -14,6 +14,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { ItemNotImplementedComponent } from './item-not-implemented/item-not-implemented.component';
+import { ArticlePreviewComponent } from './article-preview/article-preview.component';
 
 
 
@@ -24,6 +25,7 @@ import { ItemNotImplementedComponent } from './item-not-implemented/item-not-imp
     ArticlesComponent,
     ArticleComponent,
     ItemNotImplementedComponent,
+    ArticlePreviewComponent,
 
   ],
   imports: [

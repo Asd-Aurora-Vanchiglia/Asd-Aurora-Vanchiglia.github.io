@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from '../article.service';
+import { Article } from '../entity/article.entity';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  articles: Article[] = [];
+  constructor(private articlesService: ArticleService) { }
 
   ngOnInit() {
+    this.articles = this.articlesService.get_evidencied();
   }
 
 }

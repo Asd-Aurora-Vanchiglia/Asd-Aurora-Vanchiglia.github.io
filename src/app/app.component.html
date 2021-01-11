@@ -31,7 +31,7 @@
         <h1 style="margin-top: 16%;">{{title}}</h1>
       </div>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
     <div class="footer" color="primary">
       <mat-toolbar color="primary">
         <span>Asd Aurora Vanchiglia</span>
