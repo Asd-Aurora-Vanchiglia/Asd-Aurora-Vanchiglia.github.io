@@ -16,6 +16,7 @@ describe('ArticlePreviewComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ArticlePreviewComponent);
     component = fixture.componentInstance;
+    component.article = {title: 'title', body: 'body is here', coverImage: 'assets/tifo.jpg', id: '0'};
     fixture.detectChanges();
   });
 
