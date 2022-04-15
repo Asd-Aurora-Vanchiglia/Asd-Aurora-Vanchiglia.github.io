@@ -4,7 +4,7 @@
         <p>{{article_body_preview()}}  <a *ngIf="isEllipsed()" [routerLink]="['/comunicati/'+article.id]">Continua a leggere</a></p>
     </div>
     <div class="column">
-        <img src="{{article.coverImage}}">
+        <img src="{{article?.coverImage}}">
     </div>
 </div>
 
