@@ -16,6 +16,8 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { ItemNotImplementedComponent } from './item-not-implemented/item-not-implemented.component';
 import { ArticlePreviewComponent } from './article-preview/article-preview.component';
+import { ReservedAreaComponent } from './reserved-area/reserved-area.component';
+import { GroupEditorComponent } from './group-editor/group-editor.component';
 
 
 
@@ -27,6 +29,8 @@ import { ArticlePreviewComponent } from './article-preview/article-preview.compo
     ArticleComponent,
     ItemNotImplementedComponent,
     ArticlePreviewComponent,
+    ReservedAreaComponent,
+    GroupEditorComponent,
 
   ],
   imports: [

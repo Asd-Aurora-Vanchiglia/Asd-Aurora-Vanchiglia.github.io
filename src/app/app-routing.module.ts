@@ -4,6 +4,7 @@ import { ArticleComponent } from './article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ItemNotImplementedComponent } from './item-not-implemented/item-not-implemented.component';
 import { LandingComponent } from './landing/landing.component';
+import { ReservedAreaComponent } from './reserved-area/reserved-area.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'comunicati', component: ArticlesComponent, data: { cover: 'assets/comunicati-2.jpg', title: 'Comunicati' } },
   { path: 'comunicati/:id', component: ArticleComponent, data: { cover: '', title: '' } },
   { path: 'home', component: LandingComponent, data: { cover: 'assets/curva2.jpg', title: 'Asd Aurora Vanchiglia' } },
+  { path: 'manage', component: ReservedAreaComponent, data: { cover: 'assets/curva2.jpg', title: 'Asd Aurora Vanchiglia' } },
   { path: '**', redirectTo: 'home' }
 
 
