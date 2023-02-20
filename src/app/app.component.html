@@ -14,17 +14,18 @@
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>
-    <!-- <mat-toolbar class="nav">
+    <mat-toolbar class="nav" *ngIf="isManage">
       <mat-list role="list">
-        <mat-list-item role="listitem"><a [routerLink]="['/home']" routerLinkActive="active-link" mat-button>Home</a></mat-list-item>
-        <mat-list-item role="listitem"><a [routerLink]="['/chisiamo']" routerLinkActive="active-link" mat-button>Chi Siamo</a></mat-list-item>
-        <mat-list-item role="listitem"><a [routerLink]="['/comunicati']" routerLinkActive="active-link" mat-button>Comunicati</a></mat-list-item>
-        <mat-list-item role="listitem"><a [routerLink]="['/iniziative']" routerLinkActive="active-link" mat-button>Iniziative </a></mat-list-item>
-        <mat-list-item role="listitem"><a [routerLink]="['/calendario-partite']" routerLinkActive="active-link" mat-button>Calendario partite</a></mat-list-item>
-        <mat-list-item role="listitem"><a [routerLink]="['/podcast']" routerLinkActive="active-link" mat-button>Podcast</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/home']"  routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Home</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/chisiamo']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Chi Siamo</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/comunicati']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Comunicati</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/iniziative']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Iniziative </a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/calendario-partite']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Calendario partite</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/podcast']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Podcast</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['/manage']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Area Riservata</a></mat-list-item>
       </mat-list>
-    </mat-toolbar> -->
-    <div class="silder" [ngStyle]="{'background-image': 'url(' + cover + ')'}">
+    </mat-toolbar>
+    <div *ngIf="!isManage" class="silder" [ngStyle]="{'background-image': 'url(' + cover + ')'}">
       <mat-icon aria-hidden="false"  (click)="drawer.toggle()">
         reorder
       </mat-icon>
@@ -35,10 +36,11 @@
   <div class="content">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
   </div>
-    <div class="footer" color="primary">
-      <mat-toolbar color="primary">
-        <span>Asd Aurora Vanchiglia</span>
-      </mat-toolbar>
-    </div>
+    
   </mat-drawer-content>
 </mat-drawer-container>
+<footer class="footer" color="primary">
+  <mat-toolbar  class="footer" color="primary">
+    <span>Asd Aurora Vanchiglia</span>
+  </mat-toolbar>
+</footer>

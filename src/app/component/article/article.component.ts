@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../article.service';
-import { CoverService } from '../cover.service';
-import { Article } from '../entity/article.entity';
+import { ArticleService } from '../../services/article/article.service';
+import { Article } from 'src/app/entity/article.entity';
+import { CoverService } from 'src/app/services/cover/cover.service';
 
 @Component({
   selector: 'app-article',

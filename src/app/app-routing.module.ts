@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ArticleComponent } from './article/article.component';
-import { ArticlesComponent } from './articles/articles.component';
-import { ItemNotImplementedComponent } from './item-not-implemented/item-not-implemented.component';
-import { LandingComponent } from './landing/landing.component';
-import { ReservedAreaComponent } from './reserved-area/reserved-area.component';
+import { ArticleComponent } from './component/article/article.component';
+import { ArticlesComponent } from './component/articles/articles.component';
+import { GroupEditorComponent } from './pages/group-editor/group-editor.component';
+import { ItemNotImplementedComponent } from './pages/item-not-implemented/item-not-implemented.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { ReservedAreaComponent } from './pages/reserved-area/reserved-area.component';
 
 
 
@@ -26,7 +27,11 @@ const routes: Routes = [
   { path: 'comunicati', component: ArticlesComponent, data: { cover: 'assets/comunicati-2.jpg', title: 'Comunicati' } },
   { path: 'comunicati/:id', component: ArticleComponent, data: { cover: '', title: '' } },
   { path: 'home', component: LandingComponent, data: { cover: 'assets/curva2.jpg', title: 'Asd Aurora Vanchiglia' } },
-  { path: 'manage', component: ReservedAreaComponent, data: { cover: 'assets/curva2.jpg', title: 'Asd Aurora Vanchiglia' } },
+  { path: 'manage', data: { cover: 'assets/curva2.jpg', title: 'Gestione', isManage: true },
+    children: [
+        { path: '', component: ReservedAreaComponent, data: { cover: 'assets/curva2.jpg', title: 'Gestione' }},
+        { path: 'groups/new', component: GroupEditorComponent, data: { cover: 'assets/manutenzione.jpg', title: 'Gestione' } },
+    ] },
   { path: '**', redirectTo: 'home' }
 
 

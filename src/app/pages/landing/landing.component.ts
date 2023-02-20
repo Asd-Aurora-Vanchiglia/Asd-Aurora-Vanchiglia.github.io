@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '../article.service';
-import { Article } from '../entity/article.entity';
+import { Article } from 'src/app/entity/article.entity';
+import { ArticleService } from 'src/app/services/article/article.service';
+
 
 @Component({
   selector: 'app-landing',

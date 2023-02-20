@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Article } from './entity/article.entity';
-import { ARTICLES } from './mock/articles.mock';
+import { Article } from '../../entity/article.entity';
+import { ARTICLES } from '../../mock/articles.mock';
 
 @Injectable({
   providedIn: 'root'

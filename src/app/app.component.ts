@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
-import { CoverService } from './cover.service';
+import { CoverService } from './services/cover/cover.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   cover = 'assets/logo.png';
   title = 'title';
   isShowHideFlag = 'over';
+  isManage = false;
 
   constructor(private router: Router, private coverService: CoverService, private cdr: ChangeDetectorRef) {
   }
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         console.log('Route', routeReconized);
         this.cover = routeReconized.state.root.firstChild.data.cover;
         this.title = routeReconized.state.root.firstChild.data.title;
+        this.isManage = routeReconized.state.root.firstChild.data.isManage;
       }
     });
   }

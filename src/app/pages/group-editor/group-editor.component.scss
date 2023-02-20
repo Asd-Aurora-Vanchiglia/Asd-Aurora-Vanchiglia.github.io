@@ -1,0 +1,13 @@
+
+.title-container {
+    display: flex;
+    align-items: flex-start;
+    p, mat-checkbox {
+        margin-left: 1em;
+        margin-top: 1em;
+        span {
+            color: blue !important;
+        }
+    }
+
+}
