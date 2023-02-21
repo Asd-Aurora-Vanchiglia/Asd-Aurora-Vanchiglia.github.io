@@ -13,7 +13,12 @@
           <mat-hint>Nome della squadra o del gruppo es: 'Pallaovolo mista'</mat-hint>
         </mat-form-field>
         <p>URL '<span>{{url_preview}}</span>'</p>
-        <mat-checkbox formControlName="onMenu">Aggiungi al menu</mat-checkbox>
+        <mat-checkbox formControlName="onMenu" color="primary">Aggiungi al menu</mat-checkbox>
+      </section>
+      <hr>
+      <section style="margin-top: 2em;">
+        <h3>Seleziona un icona</h3>
+        <app-icon-selection formControlName="icon"></app-icon-selection>
       </section>
       <hr>
       <section style="margin-top: 2em;">

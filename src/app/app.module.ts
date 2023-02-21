@@ -23,6 +23,9 @@ import { ItemNotImplementedComponent } from './pages/item-not-implemented/item-n
 import { ReservedAreaComponent } from './pages/reserved-area/reserved-area.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ArticlePreviewComponent } from './component/article-preview/article-preview.component';
+import { IconSelectionComponent } from './component/icon-selection/icon-selection.component';
+import { IconOptionComponent } from './component/icon-option/icon-option.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -36,12 +39,15 @@ import { ArticlePreviewComponent } from './component/article-preview/article-pre
     ArticlePreviewComponent,
     ReservedAreaComponent,
     GroupEditorComponent,
+    IconSelectionComponent,
+    IconOptionComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,

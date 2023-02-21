@@ -1,0 +1,8 @@
+<div>
+    <button  mat-stroked-button  color="primary" *ngIf="!isSelected()" (click)="select()" >
+        <mat-icon>{{icon_label}}</mat-icon>
+    </button>
+    <button  mat-raised-button   color="primary" *ngIf="isSelected()" >
+        <mat-icon>{{icon_label}}</mat-icon>
+    </button>
+</div>

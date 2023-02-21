@@ -1,0 +1,5 @@
+<div class="row">
+    <span *ngFor="let icon of icons">
+        <app-icon-option [icon_label]="icon" [selection]="value" (onPress)="select(icon)"></app-icon-option>
+    </span>
+</div>

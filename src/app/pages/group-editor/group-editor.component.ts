@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { Editor } from 'ngx-editor';
+import { GroupControllerService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-group-editor',
@@ -19,7 +20,7 @@ export class GroupEditorComponent implements OnInit {
     return `${window.location.protocol}//${window.location.hostname}:${window.location.port}/team/${s.toLowerCase().trim().replace(/ /g, '-')}`;
   }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private  groupService: GroupControllerService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -30,10 +31,14 @@ export class GroupEditorComponent implements OnInit {
       title: '',
       onMenu: false,
       description: '',
+      icon: '',
     });
   }
 
   print(){
+    this.groupService.createGroup({body: this.groupForm.value}).subscribe((group) => {
+      console.log('Saved Group: ', group);
+    });
     console.log('Form: ', this.groupForm.value);
   }
 
