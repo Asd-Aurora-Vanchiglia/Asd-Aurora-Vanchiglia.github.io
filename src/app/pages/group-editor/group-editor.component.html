@@ -1,6 +1,8 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title><h3>Nuova squadra o gruppo</h3></mat-card-title>
+    <mat-card-title>
+      <h3>Nuova squadra o gruppo</h3>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <hr>
@@ -20,6 +22,19 @@
         <h3>Seleziona un icona</h3>
         <app-icon-selection formControlName="icon"></app-icon-selection>
       </section>
+      <section style="margin-top: 2em;">
+        <h3>Immagine di copertina</h3>
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+        <div class="file-upload">
+
+          {{fileName || "Nessuna immagine caricata"}}
+
+          <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+      </section>
       <hr>
       <section style="margin-top: 2em;">
         <h3>Descrizione</h3>
@@ -32,6 +47,9 @@
 
   <mat-card-actions align="end">
     <button mat-button routerLink="..">Annulla</button>
-    <button mat-button [disabled]="!groupForm.valid" (click)="print()">Salva</button>
+    <button mat-button [disabled]="!groupForm.valid" (click)="save()">Salva</button>
   </mat-card-actions>
+  <mat-card-footer>
+    <mat-progress-bar mode="determinate" [value]="progressState" [color]="progressColor"></mat-progress-bar>
+  </mat-card-footer>
 </mat-card>

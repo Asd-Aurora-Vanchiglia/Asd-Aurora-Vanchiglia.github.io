@@ -8,4 +8,5 @@ export interface GroupViewDto {
   id?: string;
   onMenu?: boolean;
   title?: string;
+  titleLinkParsed?: string;
 }

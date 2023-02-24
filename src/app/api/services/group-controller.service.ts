@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpContext, HttpRequest, HttpEventType, HttpEvent, HttpProgressEvent } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
 import { StrictHttpResponse } from '../strict-http-response';
@@ -12,6 +12,7 @@ import { map, filter } from 'rxjs/operators';
 import { GroupCreationDto } from '../models/group-creation-dto';
 import { GroupViewDto } from '../models/group-view-dto';
 import { ListWrapperGroupViewDto } from '../models/list-wrapper-group-view-dto';
+import { EventType } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +47,7 @@ export class GroupControllerService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'json',
       accept: '*/*',
       context: context
     })).pipe(
@@ -98,7 +99,7 @@ export class GroupControllerService extends BaseService {
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'json',
       accept: '*/*',
       context: context
     })).pipe(
@@ -144,22 +145,30 @@ export class GroupControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<StrictHttpResponse<GroupViewDto>> {
+): Observable<StrictHttpResponse<GroupViewDto> | HttpProgressEvent > {
 
     const rb = new RequestBuilder(this.rootUrl, GroupControllerService.UpdateImagePath, 'post');
     if (params) {
-      rb.query('image', params.image, {});
+     
+    
       rb.path('id', params.id, {});
     }
 
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'application/json',
-      context: context
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<GroupViewDto>;
+    let formData = new FormData();
+    formData.append('image', params.image);
+    const req = new HttpRequest('POST', `${this.rootUrl}/groups/${params.id}/set-image`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req).pipe(
+      filter((r: any) => r instanceof HttpResponse || r.type === HttpEventType.UploadProgress),
+      map((r: any) => {
+        if ( r.type === HttpEventType.UploadProgress)  {
+          return r as HttpProgressEvent;
+        }else if( r instanceof HttpResponse){
+          return r as StrictHttpResponse<GroupViewDto>;
+        } 
       })
     );
   }
@@ -176,10 +185,16 @@ export class GroupControllerService extends BaseService {
   },
   context?: HttpContext
 
-): Observable<GroupViewDto> {
+): Observable<GroupViewDto | HttpProgressEvent> {
 
     return this.updateImage$Response(params,context).pipe(
-      map((r: StrictHttpResponse<GroupViewDto>) => r.body as GroupViewDto)
+      map((r: any ) =>{
+        if(r.body){
+          return r.body as GroupViewDto;
+        } else if(r.type === HttpEventType.UploadProgress){
+          return r;
+        }
+      })
     );
   }
 
@@ -239,7 +254,7 @@ export class GroupControllerService extends BaseService {
   /**
    * Path part for operation getById1
    */
-  static readonly GetById1Path = '/groups/withTitle/{title}';
+  static readonly GetByTitlePath = '/groups/withTitle';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -247,20 +262,15 @@ export class GroupControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getById1$Response(params: {
-    title: string;
-  },
+  getByTitle$Response(title: string,
   context?: HttpContext
 
 ): Observable<StrictHttpResponse<GroupViewDto>> {
 
-    const rb = new RequestBuilder(this.rootUrl, GroupControllerService.GetById1Path, 'get');
-    if (params) {
-      rb.query('title', params.title, {});
-    }
-
+    const rb = new RequestBuilder(this.rootUrl, `${GroupControllerService.GetByTitlePath}/${title}`, 'get');
+    
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'json',
       accept: '*/*',
       context: context
     })).pipe(
@@ -277,14 +287,12 @@ export class GroupControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getById1(params: {
-    title: string;
-  },
+  getByTitle(title: string,
   context?: HttpContext
 
 ): Observable<GroupViewDto> {
 
-    return this.getById1$Response(params,context).pipe(
+    return this.getByTitle$Response(title, context).pipe(
       map((r: StrictHttpResponse<GroupViewDto>) => r.body as GroupViewDto)
     );
   }

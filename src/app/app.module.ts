@@ -26,6 +26,9 @@ import { ArticlePreviewComponent } from './component/article-preview/article-pre
 import { IconSelectionComponent } from './component/icon-selection/icon-selection.component';
 import { IconOptionComponent } from './component/icon-option/icon-option.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GroupViewComponent } from './pages/group-view/group-view.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 
@@ -41,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     GroupEditorComponent,
     IconSelectionComponent,
     IconOptionComponent,
+    GroupViewComponent,
 
   ],
   imports: [
@@ -59,7 +63,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatCardModule,
     MatCheckboxModule,
-    NgxEditorModule
+    NgxEditorModule,
+    MatSnackBarModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
