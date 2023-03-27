@@ -6,4 +6,5 @@ export interface GroupCreationDto {
   description?: string;
   onMenu?: boolean;
   title?: string;
+  icon?: string;
 }

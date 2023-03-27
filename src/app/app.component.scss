@@ -1,10 +1,35 @@
+
 .content {
     margin-top: 3em;
     // min-height: calc(100vh - 64px);
 }
 
-footer{
-    position:fixed;
-    bottom:0px;
-    width:100%;
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.mat-list-base {
+    display: flex !important;
+    padding-top: 0px !important;
+    position: absolute;
+    right: 0;
+}
+
+.mat-list-base .mat-list-item {
+    color: #fff !important;
+}
+
+.mat-drawer {
+    .mat-list-base {
+        display: block !important;
+        margin: 0 auto;
+        position: relative;
+
+        a {
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
 }

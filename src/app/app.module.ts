@@ -29,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { GroupViewComponent } from './pages/group-view/group-view.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { GroupListComponent } from './component/group-list/group-list.component';
 
 
 
@@ -45,6 +46,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     IconSelectionComponent,
     IconOptionComponent,
     GroupViewComponent,
+    GroupListComponent,
 
   ],
   imports: [

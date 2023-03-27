@@ -25,7 +25,7 @@
         <mat-list-item role="listitem"><a [routerLink]="['/manage']" routerLinkActive="active-link" mat-button (click)="drawer.toggle()">Area Riservata</a></mat-list-item>
       </mat-list>
     </mat-toolbar>
-    <div *ngIf="!isManage" class="silder" [ngStyle]="{'background-image': 'url(' + cover + ')'}">
+    <div *ngIf="!isManage" class="silder" [ngStyle]="{'background-image': 'url(http://localhost:8080/images/' + cover + '), url(' + cover +')'}">
       <mat-icon aria-hidden="false"  (click)="drawer.toggle()">
         reorder
       </mat-icon>

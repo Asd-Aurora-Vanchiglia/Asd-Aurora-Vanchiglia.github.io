@@ -3,3 +3,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.groupBtn {
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: center;
+    &:hover {
+        background-color: #dfe4ea;
+        cursor: pointer;
+    }
+}

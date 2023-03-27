@@ -2,8 +2,8 @@
     <div class="row">
         <span *ngFor="let group of groups">
 
-            <div class="column col" [routerLink]="['/group', group.titleLinkParsed]">
-                <mat-icon>group.icon</mat-icon>
+            <div class="col groupBtn" [routerLink]="['/group', group.titleLinkParsed]">
+                <mat-icon>{{group.icon}}</mat-icon>
                 <h3>{{group.title}}</h3>
             </div>
         </span>

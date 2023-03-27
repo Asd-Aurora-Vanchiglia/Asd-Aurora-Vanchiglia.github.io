@@ -1,0 +1,31 @@
+
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h1> Gruppi e squadre</h1>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <section style="margin-top: 2em;">
+            <mat-list>
+                <mat-list-item *ngFor="let group of groups">
+                    <span class="col-1">
+                        <mat-icon class="big" matListItemIcon>{{group.icon}}</mat-icon>
+                    </span>
+                    <span class="col-4">
+                        <div matListItemTitle><h3 sytle="color: black!important">{{group.title}}</h3></div>
+                    </span>
+                    <span class="col-1 action">
+                        <mat-icon  matListItemIcon>edit</mat-icon>
+                    </span>
+                </mat-list-item>
+            </mat-list>
+        </section>
+    </mat-card-content>
+    <mat-card-actions align="end">
+    </mat-card-actions>
+    <!-- <mat-card-footer style="margin-top: 2em;">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer> -->
+</mat-card>

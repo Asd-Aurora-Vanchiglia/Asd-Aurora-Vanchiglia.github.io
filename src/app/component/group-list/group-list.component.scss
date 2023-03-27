@@ -1,0 +1,17 @@
+.mat-mdc-list-item-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+h3 {
+    color: black;
+}
+.big{
+    transform: scale(2);
+}
+
+.action {
+    &:hover {
+        background-color: #dfe4ea;
+        cursor: pointer;
+    }
+}
+

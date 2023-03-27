@@ -20,7 +20,7 @@
       <hr>
       <section style="margin-top: 2em;">
         <h3>Seleziona un icona</h3>
-        <app-icon-selection formControlName="icon"></app-icon-selection>
+        <app-icon-selection formControlName="icon" (selected)="showIconSeletcion($event)"></app-icon-selection>
       </section>
       <section style="margin-top: 2em;">
         <h3>Immagine di copertina</h3>

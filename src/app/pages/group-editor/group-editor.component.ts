@@ -36,6 +36,11 @@ export class GroupEditorComponent implements OnInit {
     this.initForm();
   }
 
+  showIconSeletcion(event: any){
+    console.log("Event: ", event);
+    this.groupForm.get('icon')?.setValue(event);
+  }
+
   initForm() {
     this.groupForm = this.formBuilder.group({
       title: '',
