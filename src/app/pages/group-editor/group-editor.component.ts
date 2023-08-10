@@ -27,7 +27,7 @@ export class GroupEditorComponent implements OnInit {
 
   get url_preview(): string {
     const s: string = this.groupForm?.get('title')?.value;
-    return `${window.location.protocol}//${window.location.hostname}:${window.location.port}/team/${s.toLowerCase().trim().replace(/ /g, '-')}`;
+    return `${window.location.protocol}//${window.location.hostname}:${window.location.port}/group/${s.toLowerCase().trim().replace(/ /g, '-')}`;
   }
 
   constructor(private formBuilder: FormBuilder, private groupService: GroupControllerService, private snackBar: MatSnackBar) { }
