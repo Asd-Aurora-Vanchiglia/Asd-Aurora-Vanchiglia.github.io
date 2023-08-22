@@ -1,12 +1,11 @@
+import { HttpProgressEvent } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatIconRegistry } from '@angular/material/icon';
-import { Editor } from 'ngx-editor';
-import { GroupControllerService } from 'src/app/api/services';
-import { GroupViewComponent } from '../group-view/group-view.component';
-import { HttpProgressEvent } from '@angular/common/http';
-import { GroupViewDto } from 'src/app/api/models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Editor } from 'ngx-editor';
+import { GroupViewDto } from 'src/app/api/models';
+import { GroupControllerService, ImageControllerService } from 'src/app/api/services';
 
 @Component({
   selector: 'app-group-editor',
@@ -23,6 +22,13 @@ export class GroupEditorComponent implements OnInit {
   fileBlob: Blob
   progressState = 0;
   progressColor = null;
+  previewImageUrl= null;
+  private __isNew =  true;
+  private __gropuId = null;
+
+  get title(): string {
+    return this.__isNew ? `Nuova squadra o gruppo` : 'Modifica squadra/gruppo';
+  }
 
 
   get url_preview(): string {
@@ -30,10 +36,18 @@ export class GroupEditorComponent implements OnInit {
     return `${window.location.protocol}//${window.location.hostname}:${window.location.port}/group/${s.toLowerCase().trim().replace(/ /g, '-')}`;
   }
 
-  constructor(private formBuilder: FormBuilder, private groupService: GroupControllerService, private snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private groupService: GroupControllerService, private snackBar: MatSnackBar, private route: ActivatedRoute, private imageService: ImageControllerService) { }
 
   ngOnInit(): void {
-    this.initForm();
+    this.route.data.subscribe((data) => {
+      let group: GroupViewDto = data.group;
+      console.log('Loaded group: ', group);
+      this.initForm(group);
+      this.__isNew = !group;
+      this.previewImageUrl = group ? this.imageService.getImageUrlFromId(group.coverImageId) : null;
+      this.__gropuId = group?.id;
+    });
+
   }
 
   showIconSeletcion(event: any){
@@ -41,13 +55,21 @@ export class GroupEditorComponent implements OnInit {
     this.groupForm.get('icon')?.setValue(event);
   }
 
-  initForm() {
-    this.groupForm = this.formBuilder.group({
-      title: '',
-      onMenu: false,
-      description: '',
-      icon: '',
-    });
+  initForm(group?: GroupViewDto | undefined) {
+    this.groupForm = this.formBuilder.group( group ?
+      {
+        title: group?.title,
+        onMenu: group?.onMenu,
+        description: group?.description,
+        icon: group?.icon
+      }:
+      {
+        title: '',
+        onMenu: false,
+        description: '',
+        icon: ''
+      }
+    );
   }
 
   save() {
@@ -55,9 +77,20 @@ export class GroupEditorComponent implements OnInit {
     this.progressColor = null;
     this.progressState = 0;
 
-    this.groupService.createGroup({ body: this.groupForm.value }).subscribe((group) => {
-      this.progressState = 50;
 
+    if (this.__isNew){
+      this.groupService.createGroup({ body: this.groupForm.value })
+        .subscribe((group) => this.saveResponseHandler(group), (error) => this.saveErrorHandler(error));
+    } else {
+      this.groupService.updateGroup({ id: this.__gropuId, body: this.groupForm.value })
+        .subscribe((group) => this.saveResponseHandler(group), (error) => this.saveErrorHandler(error));
+    }
+  }
+
+  saveResponseHandler(group) {
+    this.progressState = 50;
+
+    if(this.fileBlob){
       this.groupService.updateImage({ id: group.id, image: this.fileBlob }).subscribe((data) => {
         if ('id' in data) {
           data = data as GroupViewDto;
@@ -71,13 +104,20 @@ export class GroupEditorComponent implements OnInit {
           this.progressState = Math.round(data.loaded / data.total) * 50
         }
       })
-    }, (error) => {
+    } 
+    else {
       this.progressState = 100;
-      this.progressColor = 'warn';
-      this.snackBar.open(`Errore nel salvataggio`, '', { horizontalPosition: 'center', verticalPosition: 'top', duration: 5000 })
-            .afterDismissed().subscribe(() => { console.log('Yeah') });
+      this.progressColor = 'green';
+      this.snackBar.open(`Gruppo ${group.title} salvato`, '', { horizontalPosition: 'center', verticalPosition: 'top', duration: 5000 })
+        .afterDismissed().subscribe(() => { console.log('Yeah') });
+    }
+  }
 
-    });
+  saveErrorHandler(error) {
+    this.progressState = 100;
+    this.progressColor = 'warn';
+    this.snackBar.open(`Errore nel salvataggio`, '', { horizontalPosition: 'center', verticalPosition: 'top', duration: 5000 })
+          .afterDismissed().subscribe(() => { console.log('Yeah') });
   }
 
   uploadImage() {
@@ -85,12 +125,19 @@ export class GroupEditorComponent implements OnInit {
   }
 
   onFileSelected(event) {
+    const reader = new FileReader();
 
     const file: File = event.target.files[0];
 
     if (file) {
       this.fileName = file.name;
       this.fileBlob = file;
+
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+        this.previewImageUrl = reader.result as string;
+      }
     }
   }
 

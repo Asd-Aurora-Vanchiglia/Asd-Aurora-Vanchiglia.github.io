@@ -218,11 +218,11 @@ export class GroupControllerService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, GroupControllerService.GetByIdPath, 'get');
     if (params) {
-      rb.query('id', params.id, {});
+      rb.path('id', params.id, {});
     }
 
     return this.http.request(rb.build({
-      responseType: 'blob',
+      responseType: 'json',
       accept: '*/*',
       context: context
     })).pipe(
@@ -296,5 +296,60 @@ export class GroupControllerService extends BaseService {
       map((r: StrictHttpResponse<GroupViewDto>) => r.body as GroupViewDto)
     );
   }
+
+
+  static readonly UpdateGroupPath = '/groups/{id}';
+
+    /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `createGroup()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+    updateGroup$Response(params: {
+      id: string
+      body: GroupCreationDto
+    },
+    context?: HttpContext
+  
+  ): Observable<StrictHttpResponse<GroupViewDto>> {
+  
+      const rb = new RequestBuilder(this.rootUrl, GroupControllerService.UpdateGroupPath, 'patch');
+      if (params) {
+        rb.path('id', params.id);
+        rb.body(params.body, 'application/json');
+      }
+  
+      return this.http.request(rb.build({
+        responseType: 'json',
+        accept: '*/*',
+        context: context
+      })).pipe(
+        filter((r: any) => r instanceof HttpResponse),
+        map((r: HttpResponse<any>) => {
+          return r as StrictHttpResponse<GroupViewDto>;
+        })
+      );
+    }
+  
+    /**
+     * This method provides access only to the response body.
+     * To access the full response (for headers, for example), `createGroup$Response()` instead.
+     *
+     * This method sends `application/json` and handles request body of type `application/json`.
+     */
+    updateGroup(params: {
+      id: string
+      body: GroupCreationDto
+    },
+    context?: HttpContext
+  
+  ): Observable<GroupViewDto> {
+  
+      return this.updateGroup$Response(params,context).pipe(
+        map((r: StrictHttpResponse<GroupViewDto>) => r.body as GroupViewDto)
+      );
+    }
+  
 
 }

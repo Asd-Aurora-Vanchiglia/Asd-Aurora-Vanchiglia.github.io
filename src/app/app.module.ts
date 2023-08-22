@@ -30,6 +30,7 @@ import { GroupViewComponent } from './pages/group-view/group-view.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { GroupListComponent } from './component/group-list/group-list.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -67,7 +68,8 @@ import { GroupListComponent } from './component/group-list/group-list.component'
     MatCheckboxModule,
     NgxEditorModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

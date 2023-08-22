@@ -8,24 +8,59 @@
     </mat-card-header>
     <mat-card-content>
         <section style="margin-top: 2em;">
-            <mat-list>
-                <mat-list-item *ngFor="let group of groups">
-                    <span class="col-1">
-                        <mat-icon class="big" matListItemIcon>{{group.icon}}</mat-icon>
-                    </span>
-                    <span class="col-4">
-                        <div matListItemTitle><h3 sytle="color: black!important">{{group.title}}</h3></div>
-                    </span>
-                    <span class="col-1 action">
-                        <mat-icon  matListItemIcon>edit</mat-icon>
-                    </span>
-                </mat-list-item>
-            </mat-list>
+            <table mat-table [dataSource]="groups" class="mat-elevation-z8">
+                
+                <ng-container matColumnDef="icon">
+                    <th mat-header-cell *matHeaderCellDef class="icon">Icona</th>
+                    <td mat-cell *matCellDef="let group">
+                        <mat-icon class="big">{{group.icon}}</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef>Nome/Titolo</th>
+                    <td mat-cell *matCellDef="let group">
+                        <div><h3 sytle="color: black!important">{{group.title}}</h3></div>
+                    </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="menu">
+                    <th mat-header-cell *matHeaderCellDef class="action">Menù</th>
+                    <td mat-cell class="action" *matCellDef="let group">
+                        <mat-icon >{{group.onMenu ? 'check_circle':'cancel'}}</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="view">
+                    <th mat-header-cell *matHeaderCellDef class="action">Visualizza</th>
+                    <td mat-cell [routerLink]="['/group/',group.titleLinkParsed]" class="action" *matCellDef="let group">
+                        <mat-icon >remove_red_eye</mat-icon>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef  class="action">Modifica</th>
+                    <td mat-cell [routerLink]="['groups/',group.id]" class="action" *matCellDef="let group">
+                            <mat-icon>edit</mat-icon>
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef class="action">Elimina</th>
+                    <td mat-cell class="action" *matCellDef="let group">
+                        <mat-icon>delete</mat-icon>
+                    </td>
+                </ng-container>
+                
+
+                <tr class="col" mat-header-row *matHeaderRowDef="['icon', 'title', 'menu', 'view', 'edit', 'delete']"></tr>
+                <tr class="col" mat-row *matRowDef="let row; columns: ['icon', 'title', 'menu', 'view', 'edit', 'delete'];"></tr>
+            </table>
         </section>
     </mat-card-content>
     <mat-card-actions align="end">
     </mat-card-actions>
-    <!-- <mat-card-footer style="margin-top: 2em;">
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    </mat-card-footer> -->
 </mat-card>

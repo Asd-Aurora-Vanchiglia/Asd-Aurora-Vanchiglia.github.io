@@ -8,10 +8,33 @@ h3 {
     transform: scale(2);
 }
 
-.action {
+td.action {
+    margin-left: 1em;
+    margin-right: 1em;
     &:hover {
         background-color: #dfe4ea;
         cursor: pointer;
     }
 }
+
+tr {
+    .icon {
+        width: 15pc;
+    } 
+    .action {
+        width: 5pc;
+        text-align: center;
+    }
+    // td:hover {
+    td {
+        border-top: 1px solid rgba(124, 204, 243, 0.58);
+        border-bottom: 1px solid rgba(124, 204, 243, 0.58);
+    }
+}
+
+
+table {
+    width: 100%;
+}
+  
 

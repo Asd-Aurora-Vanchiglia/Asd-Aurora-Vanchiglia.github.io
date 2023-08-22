@@ -34,12 +34,12 @@ export class ImageControllerService extends BaseService {
    */
   getMethodName$Response(params?: {
     body?: {
-'imageFile': Blob;
-}
+      'imageFile': Blob;
+    }
   },
-  context?: HttpContext
+    context?: HttpContext
 
-): Observable<StrictHttpResponse<string>> {
+  ): Observable<StrictHttpResponse<string>> {
 
     const rb = new RequestBuilder(this.rootUrl, ImageControllerService.GetMethodNamePath, 'post');
     if (params) {
@@ -66,14 +66,14 @@ export class ImageControllerService extends BaseService {
    */
   getMethodName(params?: {
     body?: {
-'imageFile': Blob;
-}
+      'imageFile': Blob;
+    }
   },
-  context?: HttpContext
+    context?: HttpContext
 
-): Observable<string> {
+  ): Observable<string> {
 
-    return this.getMethodName$Response(params,context).pipe(
+    return this.getMethodName$Response(params, context).pipe(
       map((r: StrictHttpResponse<string>) => r.body as string)
     );
   }
@@ -92,10 +92,10 @@ export class ImageControllerService extends BaseService {
   getMethodName1$Response(params: {
     id: string;
   },
-  context?: HttpContext
+    context?: HttpContext
 
-): Observable<StrictHttpResponse<{
-}>> {
+  ): Observable<StrictHttpResponse<{
+  }>> {
 
     const rb = new RequestBuilder(this.rootUrl, ImageControllerService.GetMethodName1Path, 'get');
     if (params) {
@@ -124,16 +124,20 @@ export class ImageControllerService extends BaseService {
   getMethodName1(params: {
     id: string;
   },
-  context?: HttpContext
+    context?: HttpContext
 
-): Observable<{
-}> {
+  ): Observable<{
+  }> {
 
-    return this.getMethodName1$Response(params,context).pipe(
+    return this.getMethodName1$Response(params, context).pipe(
       map((r: StrictHttpResponse<{
-}>) => r.body as {
-})
+      }>) => r.body as {
+      })
     );
+  }
+
+  public getImageUrlFromId(id: string): string {
+    return `${this.rootUrl}${ImageControllerService.GetMethodName1Path}`.replace('{id}', id);
   }
 
 }

@@ -7,6 +7,7 @@ import { GroupViewComponent } from './pages/group-view/group-view.component';
 import { ItemNotImplementedComponent } from './pages/item-not-implemented/item-not-implemented.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ReservedAreaComponent } from './pages/reserved-area/reserved-area.component';
+import { GroupResolver } from './resolvers/group.resolver';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     children: [
         { path: '', component: ReservedAreaComponent, data: { cover: 'assets/curva2.jpg', title: 'Gestione' }},
         { path: 'groups/new', component: GroupEditorComponent, data: { cover: 'assets/manutenzione.jpg', title: 'Gestione' } },
+        { path: 'groups/:id', component: GroupEditorComponent, data: { cover: 'assets/manutenzione.jpg', title: 'Gestione' }, resolve: {group: GroupResolver} },
     ] },
   { path: '**', redirectTo: 'home' }
 
